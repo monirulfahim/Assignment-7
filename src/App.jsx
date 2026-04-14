@@ -1,17 +1,8 @@
-// import { useState } from 'react'
-// import { useEffect } from 'react'
 import friendsData from './friends.json';
 import './App.css'
 
 function App() {
 
-  // const [friends, setFriends] = useState([]);
-
-  // useEffect(() => {
-  //     fetch('/Keen-Keeper-Project/friends.json')
-  //       .then(res => res.json())
-  //       .then(data => setFriends(data));
-  //   }, []);
 
   return (
     <>
@@ -105,6 +96,42 @@ function App() {
             </div>
       </section>
 
+
+      {/* Footer Section */}
+      <section className='bg-[#244D3F] pl-60 pr-60 pt-20 pb-8'>
+        <div className='flex flex-col justify-center items-center gap-4 text-center'>
+          <div> 
+            <img src="./public/images/logo-xl.png" alt="" />
+        </div>
+        <div className='text-[#FFFFFF]'>
+          <p className='mb-6'>Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.</p>
+          <p className='text-xl'>Social Links</p>
+        </div>
+        <div className='flex gap-4'> 
+            <div>
+              <img src="./public/images/instagram.png" alt="" />
+            </div>
+            <div>
+              <img src="./public/images/facebook.png" alt="" />
+            </div>
+            <div>
+              <img src="./public/images/twitter.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <hr className='pt-5 opacity-30 text-[#1A8862]' />
+        <div className='flex justify-between items-center mt-6 text-[#FAFAFA] max-[576px]:flex-col max-[576px]:gap-10'>
+          <div>© 2026 KeenKeeper. All rights reserved.</div>
+          <div className='flex gap-7'>
+            <div>Privacy Policy</div>
+            <div>Terms of Service</div>
+            <div>Cookies</div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
