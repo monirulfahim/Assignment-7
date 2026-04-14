@@ -34,28 +34,28 @@ function App() {
 
                       {/* Banner Section */}
 
-      <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-20'>
+      <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-18 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 text-center max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
         <div className='flex flex-col justify-center items-center mb-11'>
-          <h1 className='text-5xl text-[#1F2937] font-bold mb-4'>Friends to keep close in your life</h1>
+          <h1 className='text-5xl text-[#1F2937] font-bold mb-4 max-[576px]:text-2xl'>Friends to keep close in your life</h1>
           <p className='text-[#64748B] mb-8 text-center'>
             Your personal shelf of meaningful connections. Browse, tend, and nurture the <br /> relationships that matter most.
           </p>
           <button className='bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 pointer-cursor cursor-pointer'><i className="fa-solid fa-plus"></i> Add a Friend</button>
         </div>
-        <div className='flex justify-center gap-9 items-center '>
-            <div className='bg-[#FFFFFF] text-center px-12 py-8 rounded-lg shadow-sm'> 
+        <div className='flex justify-center gap-9 items-center max-[576px]:flex-col max-[576px]:gap-6 max-[576px]:mt-10 max-[768px]:gap-6'>
+            <div className='bg-[#FFFFFF] text-center px-12 py-8 rounded-lg shadow-sm max-[768px]:px-7 max-[768px]:py-4'> 
                 <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>8</h3>
                 <p className='text-[#64748B]'>Total Friends</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-16 py-8 rounded-lg shadow-sm'>
+            <div className='bg-[#FFFFFF] text-center px-16 py-8 rounded-lg shadow-sm max-[768px]:px-10 max-[768px]:py-4'>
               <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>3</h3>
               <p className='text-[#64748B]'>On Track</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-11 py-8 rounded-lg shadow-sm'>
+            <div className='bg-[#FFFFFF] text-center px-11 py-8 rounded-lg shadow-sm max-[768px]:px-6 max-[768px]:py-4'>
               <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>4</h3>
               <p className='text-[#64748B]'>Need Attention</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-5 py-8 rounded-lg shadow-sm'>
+            <div className='bg-[#FFFFFF] text-center px-5 py-8 rounded-lg shadow-sm max-[576px]:px-1.5 max-[768px]:px-3 max-[768px]:py-4'>
               <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>12</h3>
               <p className='text-[#64748B]'>Interactions This Month</p>
             </div>
@@ -64,7 +64,7 @@ function App() {
 
       {/* Friends Section */}
 
-      <section className='pl-45 pr-45 pt-10 pb-20 bg-[#F8FAFC]'>
+      <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC]'>
         <div className='text-3xl font-semibold mb-5'>
           <h1>My Friends</h1>
         </div>
@@ -101,7 +101,7 @@ function App() {
       <section className='bg-[#244D3F] pl-60 pr-60 pt-20 pb-8'>
         <div className='flex flex-col justify-center items-center gap-4 text-center'>
           <div> 
-            <img src="./public/images/logo-xl.png" alt="" />
+            <img src="images/logo-xl.png" alt="" />
         </div>
         <div className='text-[#FFFFFF]'>
           <p className='mb-6'>Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.</p>
@@ -109,13 +109,13 @@ function App() {
         </div>
         <div className='flex gap-4'> 
             <div>
-              <img src="./public/images/instagram.png" alt="" />
+              <img src="images/instagram.png" alt="" />
             </div>
             <div>
-              <img src="./public/images/facebook.png" alt="" />
+              <img src="images/facebook.png" alt="" />
             </div>
             <div>
-              <img src="./public/images/twitter.png" alt="" />
+              <img src="images/twitter.png" alt="" />
             </div>
           </div>
         </div>
