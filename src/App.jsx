@@ -62,13 +62,13 @@ function App() {
         </div>
       </section>
 
-      {/* Friends Section */}
+      {/* Friends card Section */}
 
-      <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC]'>
+      <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC] max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
         <div className='text-3xl font-semibold mb-5'>
           <h1>My Friends</h1>
         </div>
-            <div className='grid grid-cols-4 items-center justify-center gap-10'>
+            <div className='grid grid-cols-4 items-center justify-center gap-10 max-[576px]:grid-cols-1 max-[576px]:gap-5 max-[768px]:grid-cols-2 max-[768px]:gap-7'>
               {friendsData.map(friends => (
               <div key={friends.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] shadow h-80'>
                 <div className='mb-2'> 
