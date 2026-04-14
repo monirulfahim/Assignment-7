@@ -1,13 +1,23 @@
-
+// import { useState } from 'react'
+// import { useEffect } from 'react'
+import friendsData from './friends.json';
 import './App.css'
 
 function App() {
+
+  // const [friends, setFriends] = useState([]);
+
+  // useEffect(() => {
+  //     fetch('/Keen-Keeper-Project/friends.json')
+  //       .then(res => res.json())
+  //       .then(data => setFriends(data));
+  //   }, []);
 
   return (
     <>
                     {/* Navbar Section */}
 
-      <section className='flex justify-between items-center pl-20 pr-20 pt-4 pb-4 bg-[#FFFFFF]'>
+      <section className='flex justify-between items-center pl-20 pr-20 pt-5 pb-5 bg-[#FFFFFF]'>
         <div> 
           <h1 className='text-3xl'><span className='text-[#1F2937] font-bold'>Keen</span><span className='text-[#244D3F] font-semibold'>Keeper</span></h1>
         </div>
@@ -21,7 +31,7 @@ function App() {
           <div>
             <button className='flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer'>
               <div> 
-                <img src="../public/images/Vector.png" alt="" />
+                <img src="./public/images/Vector.png" alt="" />
               </div>
               <div>
                    Stats
@@ -33,33 +43,68 @@ function App() {
 
                       {/* Banner Section */}
 
-      <section className='bg-[#F8FAFC] pl-63 pr-63 pt-20 pb-20'>
-        <div className='flex flex-col justify-center items-center mb-10'>
+      <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-20'>
+        <div className='flex flex-col justify-center items-center mb-11'>
           <h1 className='text-5xl text-[#1F2937] font-bold mb-4'>Friends to keep close in your life</h1>
           <p className='text-[#64748B] mb-8 text-center'>
             Your personal shelf of meaningful connections. Browse, tend, and nurture the <br /> relationships that matter most.
           </p>
-          <button className='bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 pointer-cursor cursor-pointer'><i class="fa-solid fa-plus"></i> Add a Friend</button>
+          <button className='bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 pointer-cursor cursor-pointer'><i className="fa-solid fa-plus"></i> Add a Friend</button>
         </div>
-        <div className='flex justify-around items-center '>
-            <div className='bg-[#FFFFFF] text-center px-11 py-8 rounded-lg shadow-sm'> 
-                <h3 className='text-2xl text-[#244D3F] font-semibold mb-0.5'>10</h3>
+        <div className='flex justify-center gap-9 items-center '>
+            <div className='bg-[#FFFFFF] text-center px-12 py-8 rounded-lg shadow-sm'> 
+                <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>8</h3>
                 <p className='text-[#64748B]'>Total Friends</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-15 py-8 rounded-lg shadow-sm'>
-              <h3 className='text-2xl text-[#244D3F] font-semibold mb-0.5'>3</h3>
+            <div className='bg-[#FFFFFF] text-center px-16 py-8 rounded-lg shadow-sm'>
+              <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>3</h3>
               <p className='text-[#64748B]'>On Track</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-10 py-8 rounded-lg shadow-sm'>
-              <h3 className='text-2xl text-[#244D3F] font-semibold mb-0.5'>6</h3>
+            <div className='bg-[#FFFFFF] text-center px-11 py-8 rounded-lg shadow-sm'>
+              <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>4</h3>
               <p className='text-[#64748B]'>Need Attention</p>
             </div>
-            <div className='bg-[#FFFFFF] text-center px-4 py-8 rounded-lg shadow-sm'>
-              <h3 className='text-2xl text-[#244D3F] font-semibold mb-0.5'>12</h3>
+            <div className='bg-[#FFFFFF] text-center px-5 py-8 rounded-lg shadow-sm'>
+              <h3 className='text-3xl text-[#244D3F] font-semibold mb-0.5'>12</h3>
               <p className='text-[#64748B]'>Interactions This Month</p>
             </div>
         </div>
       </section>
+
+      {/* Friends Section */}
+
+      <section className='pl-45 pr-45 pt-10 pb-20 bg-[#F8FAFC]'>
+        <div className='text-3xl font-semibold mb-5'>
+          <h1>My Friends</h1>
+        </div>
+            <div className='grid grid-cols-4 items-center justify-center gap-10'>
+              {friendsData.map(friends => (
+              <div key={friends.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] shadow h-80'>
+                <div className='mb-2'> 
+                   <img src={friends.image} alt="" />
+                </div>
+                <div> 
+                  <h3 className='text-xl font-semibold text-center text-[#1F2937]'>{friends.name}</h3>
+                </div>
+                <div>
+                  <p className='text-[#64748B]'>{friends.daysAgo}</p>
+                </div>
+                <div className='mb-3'> 
+                  <span className='bg-[#CBFADB] rounded-[100px] text-[#244D3F] px-3 py-1 font-semibold'>{friends.category}</span>
+                </div>
+                <div className={`className = rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
+                  ${friends.status === "Almost Due" ? "bg-[#EFAD44] text-[#FFFFFF]" : ""}
+                  ${friends.status === "Overdue" ? "bg-[#EF4444] text-[#FFFFFF]" : ""}
+                  ${friends.status === "On-Track" ? "bg-[#244D3F] text-[#FFFFFF]" : ""}
+                `}>
+                  <span>{friends.status}</span>
+                </div>
+              </div>
+              ))
+            }
+            </div>
+      </section>
+
     </>
   )
 }

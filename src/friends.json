@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "David Kim",
+    "image": "public/images/frd_1.png",
+    "daysAgo": "46d ago",
+    "category": "WORK",
+    "status": "Almost Due"
+  },
+  {
+    "id": 2,
+    "name": "James Wright",
+    "image": "public/images/frd_2.png",
+    "daysAgo": "20d ago",
+    "category": "FAMILY",
+    "status": "Overdue"
+  },
+  {
+    "id": 3,
+    "name": "Olivier George",
+    "image": "public/images/frd_3.png",
+    "daysAgo": "31d ago",
+    "category": "FAMILY",
+    "status": "Overdue"
+  },
+  {
+    "id": 4,
+    "name": "Harry Potter",
+    "image": "public/images/frd_4.png",
+    "daysAgo": "9d ago",
+    "category": "WORK",
+    "status": "On-Track"
+  },
+  {
+    "id": 5,
+    "name": "Archie Leo",
+    "image": "public/images/frd_5.png",
+    "daysAgo": "20d ago",
+    "category": "WORK",
+    "status": "Overdue"
+  },
+  {
+    "id": 6,
+    "name": "Fred William",
+    "image": "public/images/frd_6.png",
+    "daysAgo": "5d ago",
+    "category": "FAMILY",
+    "status": "On-Track"
+  },
+  {
+    "id": 7,
+    "name": "Lisa Nakam",
+    "image": "public/images/frd_7.png",
+    "daysAgo": "27d ago",
+    "category": "WORK",
+    "status": "On-Track"
+  },
+  {
+    "id": 8,
+    "name": "Emma Wilson",
+    "image": "public/images/frd_8.png",
+    "daysAgo": "7d ago",
+    "category": "FAMILY",
+    "status": "Overdue"
+  }
+]
