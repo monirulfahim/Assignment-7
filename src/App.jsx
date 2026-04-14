@@ -98,7 +98,7 @@ function App() {
 
 
       {/* Footer Section */}
-      <section className='bg-[#244D3F] pl-60 pr-60 pt-20 pb-8'>
+      <section className='bg-[#244D3F] pl-60 pr-60 pt-20 pb-8 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
         <div className='flex flex-col justify-center items-center gap-4 text-center'>
           <div> 
             <img src="images/logo-xl.png" alt="" />
@@ -123,9 +123,9 @@ function App() {
         <br />
         <br />
         <hr className='pt-5 opacity-30 text-[#1A8862]' />
-        <div className='flex justify-between items-center mt-6 text-[#FAFAFA] max-[576px]:flex-col max-[576px]:gap-10'>
+        <div className='flex justify-between items-center mt-6 text-[#FAFAFA] max-[576px]:flex-col max-[576px]:gap-10 max-[768px]:flex-col max-[768px]:gap-11'>
           <div>© 2026 KeenKeeper. All rights reserved.</div>
-          <div className='flex gap-7'>
+          <div className='flex gap-7 max-[576px]:gap-6 max-[768px]:gap-10'>
             <div>Privacy Policy</div>
             <div>Terms of Service</div>
             <div>Cookies</div>
