@@ -5,7 +5,10 @@
     "image": "images/frd_1.png",
     "daysAgo": "46d ago",
     "category": "WORK",
-    "status": "Almost Due"
+    "status": "Almost Due",
+    "details": "Former colleague, great mentor",
+    "email": "davidkim@gmail.com",
+    "contact":"46"
   },
   {
     "id": 2,
@@ -13,7 +16,10 @@
     "image": "images/frd_2.png",
     "daysAgo": "20d ago",
     "category": "FAMILY",
-    "status": "Overdue"
+    "status": "Overdue",
+    "details": "Relatives, a neighborly person",
+    "email": "jameswright@gmail.com",
+    "contact":"20"
   },
   {
     "id": 3,
@@ -21,7 +27,10 @@
     "image": "images/frd_3.png",
     "daysAgo": "31d ago",
     "category": "COLLEGE",
-    "status": "Overdue"
+    "status": "Overdue",
+    "details": "Old friends, a blabber man",
+    "email": "oliviergeorge@gmail.com",
+    "contact":"31"
   },
   {
     "id": 4,
@@ -29,7 +38,10 @@
     "image": "images/frd_4.png",
     "daysAgo": "9d ago",
     "category": "WORK",
-    "status": "On-Track"
+    "status": "On-Track",
+    "details": "Colleague, a good hearted person",
+    "email": "emmawilson@gmail.com",
+    "contact":"9"
   },
   {
     "id": 5,
@@ -37,7 +49,10 @@
     "image": "images/frd_5.png",
     "daysAgo": "20d ago",
     "category": "WORK",
-    "status": "Overdue"
+    "status": "Overdue",
+    "details": "Old colleague, gentleman",
+    "email": "archieleo@gmail.com",
+    "contact":"20"
   },
   {
     "id": 6,
@@ -45,7 +60,10 @@
     "image": "images/frd_6.png",
     "daysAgo": "5d ago",
     "category": "FAMILY",
-    "status": "On-Track"
+    "status": "On-Track",
+    "details": "Family member, a good hearted human",
+    "email": "fredwilliam@gmail.com",
+    "contact":"5"
   },
   {
     "id": 7,
@@ -53,7 +71,10 @@
     "image": "images/frd_7.png",
     "daysAgo": "27d ago",
     "category": "WORK",
-    "status": "On-Track"
+    "status": "On-Track",
+    "details": "colleague, a good hearted human",
+    "email": "lisanakam@gmail.com",
+    "contact":"27"
   },
   {
     "id": 8,
@@ -61,6 +82,9 @@
     "image": "images/frd_8.png",
     "daysAgo": "7d ago",
     "category": "COLLEGE",
-    "status": "Overdue"
+    "status": "Overdue",
+    "details": "Old friends, a good hearted human",
+    "email": "emmawilson@gmail.com",
+    "contact":"7"
   }
 ]

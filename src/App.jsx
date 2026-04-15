@@ -8,6 +8,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState("Home");
   const [loading, setLoading] = useState(true);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,20 +61,23 @@ function App() {
                     ${view === "Home" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}
                     `}
                 >
-                  Home
+                  <i className="fa-regular fa-house"></i>Home
                 </button>
 
                 <button onClick={() => setView("Timeline")} className={`rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2
                     ${view === "Timeline" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2"}`}>
-                  Timeline
+                  <i className="fa-regular fa-clock"></i>`  Timeline
                 </button>
 
                 <button onClick={() => setView("Stats")}
                   className={`flex items-center gap-1 justify-center rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2
-                    ${view === "Stats" ? "bg-[#244D3F] text-[#FFFFFF] flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F]  flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}`}
-                >
-                  <img src="/images/Vector.png" alt="" />
-                  Stats
+                    ${view === "Stats" ? "bg-[#244D3F] text-[#FFFFFF] flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F]  flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}`}>
+                  <div>
+                    <img src="./public/images/Vector.png" alt="" />
+                  </div>
+                  <div>
+                    Stats
+                  </div>
                 </button>
               </div>
             )
@@ -84,7 +88,8 @@ function App() {
 
       {/* Banner Section */}
 
-      <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-18 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 text-center max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
+      {!selectedFriend && (
+        <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-18 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 text-center max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
         <div className='flex flex-col justify-center items-center mb-11'>
           <h1 className='text-5xl text-[#1F2937] font-bold mb-4 max-[576px]:text-2xl'>Friends to keep close in your life</h1>
           <p className='text-[#64748B] mb-8 text-center'>
@@ -111,45 +116,136 @@ function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Friends card Section */}
 
-      <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC] max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
-        <div className='text-3xl font-semibold mb-5'>
-          <h1>My Friends</h1>
-        </div>
-        <div className='grid grid-cols-4 gap-10 max-[576px]:grid-cols-1 max-[768px]:grid-cols-2'>
+      {!selectedFriend && (
+        <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC] max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
+          <div className='text-3xl font-semibold mb-5'>
+            <h1>My Friends</h1>
+          </div>
+          <div className='grid grid-cols-4 gap-10 max-[576px]:grid-cols-1 max-[768px]:grid-cols-2'>
 
-          {loading ? (
-            <div className="col-span-4 flex justify-center items-center h-40">
-              <div className="w-10 h-10 border-4 border-[#244D3F] border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          ) : (friendsData.map(friends => (
-            <div key={friends.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] shadow h-80'>
-              <div className='mb-2'>
-                <img src={friends.image} alt="" />
+            {loading ? (
+              <div className="col-span-4 flex justify-center items-center h-40">
+                <div className="w-10 h-10 border-4 border-[#244D3F] border-t-transparent rounded-full animate-spin"></div>
               </div>
-              <div>
-                <h3 className='text-xl font-semibold text-center text-[#1F2937]'>{friends.name}</h3>
-              </div>
-              <div>
-                <p className='text-[#64748B]'>{friends.daysAgo}</p>
-              </div>
-              <div className='mb-3'>
-                <span className='bg-[#CBFADB] rounded-[100px] text-[#244D3F] px-3 py-1 font-semibold'>{friends.category}</span>
-              </div>
-              <div className={`rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
+            ) : (friendsData.map(friends => (
+              <div key={friends.id} onClick={() => setSelectedFriend(friends)} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] shadow h-80 cursor-pointer'>
+                <div className='mb-2'>
+                  <img src={friends.image} alt="" />
+                </div>
+                <div>
+                  <h3 className='text-xl font-semibold text-center text-[#1F2937]'>{friends.name}</h3>
+                </div>
+                <div>
+                  <p className='text-[#64748B]'>{friends.daysAgo}</p>
+                </div>
+                <div className='mb-3'>
+                  <span className='bg-[#CBFADB] rounded-[100px] text-[#244D3F] px-3 py-1 font-semibold'>{friends.category}</span>
+                </div>
+                <div className={`rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
                   ${friends.status === "Almost Due" ? "bg-[#EFAD44] text-[#FFFFFF]" : ""}
                   ${friends.status === "Overdue" ? "bg-[#EF4444] text-[#FFFFFF]" : ""}
                   ${friends.status === "On-Track" ? "bg-[#244D3F] text-[#FFFFFF]" : ""}
                 `}>
-                <span>{friends.status}</span>
+                  <span>{friends.status}</span>
+                </div>
+              </div>
+            ))
+            )}
+          </div>
+        </section>
+      )}
+
+      {selectedFriend && (
+        <section className='bg-[#f5f4f4] pl-57 pr-57 pt-20 pb-20 flex gap-6 items-center'>
+          <div>
+            <div>
+              <div key={selectedFriend.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] cursor-pointer mb-4'>
+                <div className='mb-2'>
+                  <img src={selectedFriend.image} alt="" />
+                </div>
+                <div>
+                  <h3 className='text-xl font-semibold text-center text-[#1F2937]'>{selectedFriend.name}</h3>
+                </div>
+                <div className={`rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
+                  ${selectedFriend.status === "Almost Due" ? "bg-[#EFAD44] text-[#FFFFFF]" : ""}
+                  ${selectedFriend.status === "Overdue" ? "bg-[#EF4444] text-[#FFFFFF]" : ""}
+                  ${selectedFriend.status === "On-Track" ? "bg-[#244D3F] text-[#FFFFFF]" : ""}
+                `}>
+                  <span>{selectedFriend.status}</span>
+                </div>
+                <div className='mb-1'>
+                  <span className='bg-[#CBFADB] rounded-[100px] text-[#244D3F] px-3 py-1 font-semibold'>{selectedFriend.category}</span>
+                </div>
+                <div className='text-center text-[#64748B]'>
+                  <p className='mb-1'>
+                    "{selectedFriend.details}"
+                  </p>
+                  <p>
+                    Preferred: {selectedFriend.email}
+                  </p>
+                </div>
               </div>
             </div>
-          ))
-          )}
-        </div>
-      </section>
+            <div className='text-center'>
+              <div className='bg-[#FFFFFF] text-[#1F2937] p-4 mb-2 font-semibold rounded-lg'>
+                <span><i class="fa-solid fa-alarm-clock"></i> Snooze 2 weeks</span>
+              </div>
+              <div className='bg-[#FFFFFF] text-[#1F2937] p-4 mb-2 font-semibold rounded-lg'>
+                <span><i class="fa-solid fa-box-archive"></i> Archive</span>
+              </div>
+              <div className='bg-[#FFFFFF] text-[#EF4444] p-4 font-semibold rounded-lg'>
+                <span><i class="fa-solid fa-trash-can"></i> Delete</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className='flex gap-6 justify-between items-center'> 
+                <div className='bg-[#FFFFFF] pl-10 pr-10 pt-8 pb-8 text-center rounded-lg'> 
+                  <h1 className='text-[#244D3F] text-2xl font-semibold'>{selectedFriend.contact}</h1>
+                  <p className='text-[#64748B]'>Days Since Contact</p>
+                </div>
+                <div className='bg-[#FFFFFF] pl-12 pr-12 pt-8 pb-8 text-center rounded-lg'> 
+                  <h1 className='text-[#244D3F] text-2xl font-semibold'>30</h1>
+                  <p className='text-[#64748B]'>Goal (Days)</p>
+                </div>
+                <div className='bg-[#FFFFFF] pl-7 pr-7 pt-8 pb-8 text-center rounded-lg'> 
+                  <h1 className='text-[#244D3F] text-2xl font-semibold wrap-anywhere'>Feb 27, 2026</h1>
+                  <p className='text-[#64748B]'>Next Due</p>
+                </div>
+            </div>
+            <div className='p-6 bg-[#FFFFFF] mt-6 mb-6 rounded-lg'> 
+                <div className='flex justify-between items-center mb-1'> 
+                  <div><p className='text-xl'>Relationship Goal</p></div>
+                  <div className='bg-[#E9E9E9] border border-[#E9E9E9] text-[#1F2937] rounded-sm font-semibold p-2'>Edit</div>
+                </div>
+                <div> 
+                  <p><span className='text-[#64748B] text-xl'>Connect every</span> <span className='text-[#1F2937] font-bold text-xl'>30 days</span></p>
+                </div>
+            </div>
+            <div className='bg-[#FFFFFF] p-6 rounded-lg'> 
+                  <h2 className='text-xl mb-4'>Quick Check-In</h2>
+                  <div className='flex gap-7 items-center'> 
+                    <div className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center '> 
+                      <p><i className="fa-solid fa-phone text-xl"></i></p>
+                      <p className='text-xl font-semibold'>Call</p>
+                    </div>
+                    <div className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center'> 
+                      <p><i className="fa-regular fa-comment-dots text-xl"></i></p>
+                      <p className='text-xl font-semibold'>Text</p>
+                    </div>
+                    <div className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center'> 
+                      <p><i className="fa-solid fa-video text-xl"></i></p>
+                      <p className='text-xl font-semibold'>Video</p>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </section>
+      )}
 
 
       {/* Footer Section */}
