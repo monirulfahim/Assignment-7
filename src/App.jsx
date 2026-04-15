@@ -35,8 +35,8 @@ function App() {
         <div className=''>
           {
             !isOpen ? (
-              <button onClick={() => setIsOpen(true)}>
-                <i className="fa-solid fa-bars text-3xl"></i>
+              <button className='text-3xl hidden max-[576px]:block' onClick={() => setIsOpen(true)}>
+                <i className="fa-solid fa-bars"></i>
               </button>
             ) : (
               <div className='flex flex-col gap-2 items-end'>
