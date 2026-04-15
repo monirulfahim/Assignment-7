@@ -20,7 +20,7 @@
     "name": "Olivier George",
     "image": "images/frd_3.png",
     "daysAgo": "31d ago",
-    "category": "FAMILY",
+    "category": "COLLEGE",
     "status": "Overdue"
   },
   {
@@ -60,7 +60,7 @@
     "name": "Emma Wilson",
     "image": "images/frd_8.png",
     "daysAgo": "7d ago",
-    "category": "FAMILY",
+    "category": "COLLEGE",
     "status": "Overdue"
   }
 ]

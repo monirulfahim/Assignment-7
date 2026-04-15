@@ -1,28 +1,43 @@
 import friendsData from './friends.json';
 import './App.css'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [view, setView] = useState("Home");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 150);
+  }, []);
 
   return (
     <>
       {/* Navbar Section */}
 
-      <section className='flex justify-between items-center pl-20 pr-20 pt-5 pb-5 bg-[#FFFFFF] max-[576px]:pt-5 max-[576px]:pr-4 max-[576px]:pb-6 max-[576px]:pl-4 text-center max-[768px]:pt-5 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
+      <section className='flex justify-between items-center pl-20 pr-20 pt-5 pb-5 bg-[#FFFFFF] max-[576px]:pt-5 max-[576px]:pr-4 max-[576px]:pb-6 max-[576px]:pl-4 max-[768px]:pt-5 max-[768px]:pr-4 max-[768px]:pb-6 max-[768px]:pl-4'>
         <div>
           <h1 className='text-3xl'><span className='text-[#1F2937] font-bold'>Keen</span><span className='text-[#244D3F] font-semibold'>Keeper</span></h1>
         </div>
-        <div className='max-[576px]:hidden flex gap-2.5'>
+        <div className='max-[576px]:hidden flex gap-2.5 max-[768px]:gap-1.5'>
           <div>
-            <button className='bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer'><i className="fa-regular fa-house"></i> Home</button>
+            <button onClick={() => setView("Home")} className={`rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2
+                    ${view === "Home" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}
+                    `}><i className="fa-regular fa-house"></i> Home</button>
           </div>
           <div>
-            <button className='rounded-sm px-2.5 py-1.5 cursor-pointer'><i className="fa-regular fa-clock"></i> Timeline</button>
+            <button onClick={() => setView("Timeline")} className={`rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2
+                    ${view === "Timeline" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2"}`}><i className="fa-regular fa-clock"></i> Timeline</button>
           </div>
           <div>
-            <button className='flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer'>
+            <button onClick={() => setView("Stats")}
+              className={`flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2
+                    ${view === "Stats" ? "bg-[#244D3F] text-[#FFFFFF] flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F]  flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}
+                    `}>
               <div>
                 <img src="./public/images/Vector.png" alt="" />
               </div>
@@ -32,7 +47,7 @@ function App() {
             </button>
           </div>
         </div>
-        <div className=''>
+        <div className='hidden max-[576px]:block'>
           {
             !isOpen ? (
               <button className='text-3xl hidden max-[576px]:block' onClick={() => setIsOpen(true)}>
@@ -40,20 +55,22 @@ function App() {
               </button>
             ) : (
               <div className='flex flex-col gap-2 items-end'>
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className='bg-[#244D3F] text-white px-2.5 py-1.5 rounded'
+                <button
+                  onClick={() => setView("Home")} className={`rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2
+                    ${view === "Home" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}
+                    `}
                 >
                   Home
                 </button>
 
-                <button onClick={() => setIsOpen(false)}>
+                <button onClick={() => setView("Timeline")} className={`rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2
+                    ${view === "Timeline" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2"}`}>
                   Timeline
                 </button>
 
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className='flex items-center gap-1'
+                <button onClick={() => setView("Stats")}
+                  className={`flex items-center gap-1 justify-center rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2
+                    ${view === "Stats" ? "bg-[#244D3F] text-[#FFFFFF] flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F]  flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}`}
                 >
                   <img src="/images/Vector.png" alt="" />
                   Stats
@@ -101,8 +118,13 @@ function App() {
         <div className='text-3xl font-semibold mb-5'>
           <h1>My Friends</h1>
         </div>
-        <div className='grid grid-cols-4 items-center justify-center gap-10 max-[576px]:grid-cols-1 max-[576px]:gap-5 max-[768px]:grid-cols-2 max-[768px]:gap-7'>
-          {friendsData.map(friends => (
+        <div className='grid grid-cols-4 gap-10 max-[576px]:grid-cols-1 max-[768px]:grid-cols-2'>
+
+          {loading ? (
+            <div className="col-span-4 flex justify-center items-center h-40">
+              <div className="w-10 h-10 border-4 border-[#244D3F] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (friendsData.map(friends => (
             <div key={friends.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] shadow h-80'>
               <div className='mb-2'>
                 <img src={friends.image} alt="" />
@@ -116,7 +138,7 @@ function App() {
               <div className='mb-3'>
                 <span className='bg-[#CBFADB] rounded-[100px] text-[#244D3F] px-3 py-1 font-semibold'>{friends.category}</span>
               </div>
-              <div className={`className = rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
+              <div className={`rounded-[100px] text-[#FFFFFF] px-3 py-1 font-semibold 
                   ${friends.status === "Almost Due" ? "bg-[#EFAD44] text-[#FFFFFF]" : ""}
                   ${friends.status === "Overdue" ? "bg-[#EF4444] text-[#FFFFFF]" : ""}
                   ${friends.status === "On-Track" ? "bg-[#244D3F] text-[#FFFFFF]" : ""}
@@ -125,7 +147,7 @@ function App() {
               </div>
             </div>
           ))
-          }
+          )}
         </div>
       </section>
 
