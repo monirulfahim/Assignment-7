@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { Outlet } from 'react-router-dom';
+import NotFound from "./NotFound";
 
 function App() {
 
@@ -14,13 +16,13 @@ function App() {
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [timeline, setTimeline] = useState([]);
   const [search, setSearch] = useState("");
-
+  
   const handleAction = (type) => {
     let icon;
 
-    if (type === "Call") icon = <img src="images/call.png" alt="" srcset="" />;
-    if (type === "Text") icon = <img src="images/text.png" alt="" srcset="" />;
-    if (type === "Video") icon = <img src="images/video.png" alt="" srcset="" />;
+    if (type === "Call") icon = <img src="/images/call.png" alt="" srcset="" />;
+    if (type === "Text") icon = <img src="/images/text.png" alt="" srcset="" />;
+    if (type === "Video") icon = <img src="/images/video.png" alt="" srcset="" />;
 
     const newEvent = {
       id: Date.now(),
@@ -95,7 +97,7 @@ function App() {
                     ${view === "Stats" ? "bg-[#244D3F] text-[#FFFFFF] flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2" : "text-[#244D3F]  flex justify-center items-center gap-1.5 rounded-sm px-2.5 py-1.5 cursor-pointer max-[768px]:px-2"}
                     `}>
               <div>
-                <img src="./public/images/Vector.png" alt="" />
+                <img src="/images/Vector.png" alt="" />
               </div>
               <div>
                 Stats
@@ -121,7 +123,7 @@ function App() {
 
                 <button onClick={() => setView("Timeline")} className={`rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2
                     ${view === "Timeline" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2"}`}>
-                  <i className="fa-regular fa-clock"></i>`  Timeline
+                  <i className="fa-regular fa-clock"></i>  Timeline
                 </button>
 
                 <button onClick={() => setView("Stats")}
@@ -183,19 +185,20 @@ function App() {
       {/* Stats Section */}
       {view === "Stats" && (
         <section className="p-10 bg-[#F8FAFC] max-[576px]:p-3">
-          <h1 className="text-3xl font-bold mb-6">Friendship Analytics</h1>
+          <h1 className="text-4xl font-bold mb-6">Friendship Analytics</h1>
 
           <div className="bg-white p-5 rounded-lg shadow flex justify-center">
             {timeline.length === 0 ? (
-              <p className="text-gray-500 text-lg">
-                No data yet. Add some interactions!
+              <p className="text-gray-500 p-35 text-2xl max-[576px]:p-14 max-[768px]:text-lg">
+                No data yet.<br />
+                Add some interactions!
               </p>
             ) : (
-              <PieChart width={350} height={252} className='max-[576px]:width-full max-[576px]:height-full'>
+              <PieChart width={360} height={270} className='max-[576px]:width-full max-[576px]:height-full'>
                 <div>
                   <h1>By Interaction Type</h1>
                 </div>
-                
+
                 <Pie
                   data={getStatsData()}
                   cx="50%"
@@ -208,7 +211,7 @@ function App() {
                 >
                   <Cell fill="#244D3F" />
                   <Cell fill="#7E35E1" />
-                  <Cell fill="#37A163" />
+                  <Cell fill="#0ea5e9" />
                 </Pie>
                 <Tooltip />
               </PieChart>
@@ -217,9 +220,11 @@ function App() {
         </section>
       )}
 
+      {view === "NotFound" && <NotFound />}
+
       {/* Banner Section */}
 
-      {!selectedFriend && view !== "Timeline" && (
+      {!selectedFriend && view === "Home" && (
         <section className='bg-[#F8FAFC] pl-50 pr-50 pt-20 pb-18 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 text-center max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
           <div className='flex flex-col justify-center items-center mb-11'>
             <h1 className='text-5xl text-[#1F2937] font-bold mb-4 max-[576px]:text-2xl'>Friends to keep close in your life</h1>
@@ -251,7 +256,7 @@ function App() {
 
       {/* Friends card Section */}
 
-      {!selectedFriend && view !== "Timeline" && (
+      {!selectedFriend && view === "Home" && (
         <section className='pl-45 pr-45 pt-5 pb-20 bg-[#F8FAFC] max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
           <div className='text-3xl font-semibold mb-5'>
             <h1>My Friends</h1>
@@ -338,22 +343,22 @@ function App() {
             </div>
           </div>
           <div>
-            <div className='flex gap-6 justify-between items-center max-[576px]:gap-3  max-[576px]:justify-center  max-[576px]:flex-col max-[768px]:gap-3'>
-              <div className='bg-[#FFFFFF] pl-10 pr-10 pt-8 pb-8 text-center rounded-lg'>
+            <div className='flex gap-6 justify-between items-center max-[576px]:gap-3  max-[576px]:justify-center max-[576px]:flex-col max-[768px]:justify-center max-[768px]:gap-1.5 '>
+              <div className='bg-[#FFFFFF] pl-10 pr-10 pt-8 pb-8 text-center rounded-lg max-[768px]:pl-7 max-[768px]:pr-7'>
                 <h1 className='text-[#244D3F] text-2xl font-semibold'>{selectedFriend.contact}</h1>
                 <p className='text-[#64748B]'>Days Since Contact</p>
               </div>
-              <div className='bg-[#FFFFFF] pl-12 pr-12 pt-8 pb-8 text-center rounded-lg  max-[576px]:pl-16  max-[576px]:pr-16'>
+              <div className='bg-[#FFFFFF] pl-12 pr-12 pt-8 pb-8 text-center rounded-lg  max-[576px]:pl-16  max-[576px]:pr-16 max-[768px]:pl-8 max-[768px]:pr-8'>
                 <h1 className='text-[#244D3F] text-2xl font-semibold'>30</h1>
                 <p className='text-[#64748B]'>Goal (Days)</p>
               </div>
-              <div className='bg-[#FFFFFF] pl-7 pr-7 pt-8 pb-8 text-center rounded-lg  max-[576px]:pl-8  max-[576px]:pr-8'>
+              <div className='bg-[#FFFFFF] pl-7 pr-7 pt-8 pb-8 text-center rounded-lg max-[576px]:pl-8  max-[576px]:pr-8 max-[768px]:pl-5 max-[768px]:pr-5'>
                 <h1 className='text-[#244D3F] text-2xl font-semibold wrap-anywhere'>Feb 27, 2026</h1>
                 <p className='text-[#64748B]'>Next Due</p>
               </div>
             </div>
-            <div className='p-6 bg-[#FFFFFF] mt-6 mb-6 rounded-lg  max-[576px]:p-3'>
-              <div className='flex justify-between items-center mb-1 max-[576px]:justify-center  max-[576px]:gap-20'>
+            <div className='p-6 bg-[#FFFFFF] mt-6 mb-6 rounded-lg  max-[576px]:p-3 max-[768px]:p-3'>
+              <div className='flex justify-between items-center mb-1 max-[576px]:justify-center  max-[576px]:gap-20  max-[768px]:gap-5'>
                 <div><p className='text-xl'>Relationship Goal</p></div>
                 <div className='bg-[#E9E9E9] border border-[#E9E9E9] text-[#1F2937] rounded-sm font-semibold p-2'>Edit</div>
               </div>
@@ -361,21 +366,21 @@ function App() {
                 <p><span className='text-[#64748B] text-xl'>Connect every</span> <span className='text-[#1F2937] font-bold text-xl'>30 days</span></p>
               </div>
             </div>
-            <div className='bg-[#FFFFFF] p-6 rounded-lg'>
+            <div className='bg-[#FFFFFF] p-6 rounded-lg max-[768px]:p-3'>
               <h2 className='text-xl mb-4  max-[576px]:text-center'>Quick Check-In</h2>
-              <div className='flex gap-7 items-center  max-[576px]:flex-col'>
+              <div className='flex gap-7 items-center  max-[576px]:flex-col max-[768px]:gap-7'>
                 <div onClick={() => handleAction("Call")
-                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center '>
+                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center max-[768px]:pl-14 max-[768px]:pr-14'>
                   <p><i className="fa-solid fa-phone text-xl"></i></p>
                   <p className='text-xl font-semibold'>Call</p>
                 </div>
                 <div onClick={() => handleAction("Text")
-                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center'>
+                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center max-[768px]:pl-14 max-[768px]:pr-14'>
                   <p><i className="fa-regular fa-comment-dots text-xl"></i></p>
                   <p className='text-xl font-semibold'>Text</p>
                 </div>
                 <div onClick={() => handleAction("Video")
-                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center'>
+                } className='bg-[#F8FAFC] pl-18 pr-18 pt-5 pb-5 cursor-pointer rounded-lg text-center max-[768px]:pl-14 max-[768px]:pr-14'>
                   <p><i className="fa-solid fa-video text-xl"></i></p>
                   <p className='text-xl font-semibold'>Video</p>
                 </div>
@@ -390,7 +395,7 @@ function App() {
       <section className='bg-[#244D3F] pl-60 pr-60 pt-20 pb-8 max-[576px]:pt-10 max-[576px]:pr-6 max-[576px]:pb-6 max-[576px]:pl-6 max-[768px]:pt-10 max-[768px]:pr-6 max-[768px]:pb-6 max-[768px]:pl-6'>
         <div className='flex flex-col justify-center items-center gap-4 text-center'>
           <div>
-            <img src="images/logo-xl.png" alt="" />
+            <img src="/images/logo-xl.png" alt="" />
           </div>
           <div className='text-[#FFFFFF]'>
             <p className='mb-6'>Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.</p>
@@ -398,13 +403,13 @@ function App() {
           </div>
           <div className='flex gap-4'>
             <div>
-              <img src="images/instagram.png" alt="" />
+              <img src="/images/instagram.png" alt="" />
             </div>
             <div>
-              <img src="images/facebook.png" alt="" />
+              <img src="/images/facebook.png" alt="" />
             </div>
             <div>
-              <img src="images/twitter.png" alt="" />
+              <img src="/images/twitter.png" alt="" />
             </div>
           </div>
         </div>
@@ -421,7 +426,9 @@ function App() {
           </div>
         </div>
       </section>
+
       <ToastContainer />
+      <Outlet />
     </>
   )
 }

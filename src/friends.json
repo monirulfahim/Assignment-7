@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "David Kim",
-    "image": "images/frd_1.png",
+    "image": "/images/frd_1.png",
     "daysAgo": "46d ago",
     "category": "WORK",
     "status": "Almost Due",
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "name": "James Wright",
-    "image": "images/frd_2.png",
+    "image": "/images/frd_2.png",
     "daysAgo": "20d ago",
     "category": "FAMILY",
     "status": "Overdue",
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "name": "Olivier George",
-    "image": "images/frd_3.png",
+    "image": "/images/frd_3.png",
     "daysAgo": "31d ago",
     "category": "COLLEGE",
     "status": "Overdue",
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "name": "Harry Potter",
-    "image": "images/frd_4.png",
+    "image": "/images/frd_4.png",
     "daysAgo": "9d ago",
     "category": "WORK",
     "status": "On-Track",
@@ -46,7 +46,7 @@
   {
     "id": 5,
     "name": "Archie Leo",
-    "image": "images/frd_5.png",
+    "image": "/images/frd_5.png",
     "daysAgo": "20d ago",
     "category": "WORK",
     "status": "Overdue",
@@ -57,7 +57,7 @@
   {
     "id": 6,
     "name": "Fred William",
-    "image": "images/frd_6.png",
+    "image": "/images/frd_6.png",
     "daysAgo": "5d ago",
     "category": "FAMILY",
     "status": "On-Track",
@@ -68,7 +68,7 @@
   {
     "id": 7,
     "name": "Lisa Nakam",
-    "image": "images/frd_7.png",
+    "image": "/images/frd_7.png",
     "daysAgo": "27d ago",
     "category": "WORK",
     "status": "On-Track",
@@ -79,7 +79,7 @@
   {
     "id": 8,
     "name": "Emma Wilson",
-    "image": "images/frd_8.png",
+    "image": "/images/frd_8.png",
     "daysAgo": "7d ago",
     "category": "COLLEGE",
     "status": "Overdue",
