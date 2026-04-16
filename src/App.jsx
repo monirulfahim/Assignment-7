@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [timeline, setTimeline] = useState([]);
+  const [search, setSearch] = useState("");
 
   const handleAction = (type) => {
     let icon;
@@ -22,7 +24,7 @@ function App() {
 
     const newEvent = {
       id: Date.now(),
-      name: selectedFriend.name,
+      name: selectedFriend?.name,
       type: type,
       icon: icon,
       date: new Date().toLocaleDateString()
@@ -32,13 +34,31 @@ function App() {
 
     toast(
       <div className="flex items-center gap-2 text-xl">
-        {icon} {type} with {selectedFriend.name}
+        {icon} {type} with {selectedFriend?.name}
       </div>,
       {
         position: "top-center",
         autoClose: 2000,
       }
     );
+  };
+
+  const getStatsData = () => {
+    const counts = {
+      Call: 0,
+      Text: 0,
+      Video: 0,
+    };
+
+    timeline.forEach((item) => {
+      counts[item.type]++;
+    });
+
+    return [
+      { name: "Call", value: counts.Call },
+      { name: "Text", value: counts.Text },
+      { name: "Video", value: counts.Video },
+    ];
   };
 
   useEffect(() => {
@@ -65,6 +85,7 @@ function App() {
             <button onClick={() => {
               setView("Timeline");
               setSelectedFriend(null);
+              setIsOpen(false);
             }} className={`rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2
                     ${view === "Timeline" ? "bg-[#244D3F] text-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2" : "text-[#244D3F] bg-[#FFFFFF] rounded-sm px-2.5 py-1.5  cursor-pointer max-[768px]:px-2"}`}><i className="fa-regular fa-clock"></i> Timeline</button>
           </div>
@@ -119,29 +140,82 @@ function App() {
         </div>
       </section>
 
-      {view === "Timeline" && (
-        <section className="p-10 bg-[#F8FAFC] max-[576px]:p-4">
-          <h1 className="text-2xl mb-4">Timeline</h1>
+      {/* Timeline Section */}
 
-          {timeline.map((item) => (
-            <div key={item.id} className="bg-[#FFFFFF] p-4 mb-2 rounded-lg shadow flex gap-4 items-center max-[576px]:p-3 max-[576px]:gap-2">
-              <div className="font-semibold">
-                <div className='text-xs'> {item.icon} </div>
-              </div>
-              <div>
-                <div className='flex gap-2.5 text-xl font-semibold mb-2.5 max-[576px]:gap-1.5'>
-                  <div> {item.type} </div> 
-                 <div>  With {item.name} </div>
+      {view === "Timeline" && (
+        <section className="p-10 bg-[#F8FAFC] pl-60 pr-60 pt-20 pb-20 max-[576px]:p-4 max-[768px]:p-8">
+          <h1 className="text-5xl mb-4 font-bold">Timeline</h1>
+
+          <input
+            type="text"
+            placeholder="Filter timeline..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="p-2 mb-4 border rounded"
+          />
+
+
+          {timeline
+            .filter((item) =>
+              item.name.toLowerCase().includes(search.toLowerCase()) ||
+              item.type.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((item) => (
+              <div key={item.id} className="bg-[#FFFFFF] p-4 mb-2 rounded-lg shadow flex gap-4 items-center max-[576px]:p-3 max-[576px]:gap-2">
+                <div className="font-semibold">
+                  <div className='text-xs'> {item.icon} </div>
                 </div>
                 <div>
-                  <p className="text-gray-500 text-xl">{item.date}</p>
+                  <div className='flex gap-2.5 text-xl font-semibold mb-2.5 max-[576px]:gap-1.5'>
+                    <div> {item.type} </div>
+                    <div>  With {item.name} </div>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-xl">{item.date}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </section>
       )}
 
+
+      {/* Stats Section */}
+      {view === "Stats" && (
+        <section className="p-10 bg-[#F8FAFC] max-[576px]:p-3">
+          <h1 className="text-3xl font-bold mb-6">Friendship Analytics</h1>
+
+          <div className="bg-white p-5 rounded-lg shadow flex justify-center">
+            {timeline.length === 0 ? (
+              <p className="text-gray-500 text-lg">
+                No data yet. Add some interactions!
+              </p>
+            ) : (
+              <PieChart width={350} height={252} className='max-[576px]:width-full max-[576px]:height-full'>
+                <div>
+                  <h1>By Interaction Type</h1>
+                </div>
+                
+                <Pie
+                  data={getStatsData()}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={100}
+                  dataKey="value"
+                  label={({ name, percent }) =>
+                    `${name} ${(percent * 100).toFixed(0)}%`
+                  }
+                >
+                  <Cell fill="#244D3F" />
+                  <Cell fill="#7E35E1" />
+                  <Cell fill="#37A163" />
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Banner Section */}
 
@@ -216,8 +290,12 @@ function App() {
         </section>
       )}
 
-      {selectedFriend && (
-        <section className='bg-[#f5f4f4] pl-57 pr-57 pt-20 pb-20 flex gap-6 items-center max-[576px]:pt-10 max-[576px]:pr-2 max-[576px]:pb-6 max-[576px]:pl-2 max-[576px]:flex-col max-[768px]:pt-10 max-[768px]:pr-4 max-[768px]:pb-6 max-[768px]:pl-4 max-[768px]:flex-col'>
+      {selectedFriend && view !== "Timeline" && (
+        <section className='bg-[#f5f4f4] pl-57 pr-57 pt-20 pb-20 flex gap-6 items-center max-[576px]:pt-10 max-[576px]:pr-2 max-[576px]:pb-6 max-[576px]:pl-2 max-[576px]:flex-col max-[768px]:pt-10 max-[768px]:pr-4 max-[768px]:pb-6 max-[768px]:pl-4 max-[768px]:flex-col relative'>
+          <button onClick={() => setSelectedFriend(null)} className='flex gap-0.5 items-center absolute top-7 max-[576px]:absolute left-3 max-[576px]:top-0.5 border border-gray-300 rounded-lg px-3 py-1 bg-blue-200 text-cyan-800 cursor-pointer max-[576px]:px-2'>
+            <div><i class="fa-solid fa-angles-left"></i></div>
+            <div className='text-2xl font-semibold'>Back</div>
+          </button>
           <div>
             <div>
               <div key={selectedFriend.id} className='flex flex-col gap-3 justify-center items-center p-8 rounded-lg bg-[#FFFFFF] cursor-pointer mb-4'>
